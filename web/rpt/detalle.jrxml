@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detalle" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f15f612c-bdc4-4c51-ad98-ab27b192d220">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="factura" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     detalleventas.`idventas` AS detalleventas_idventas,
+     detalleventas.`idproductos` AS detalleventas_idproductos,
+     detalleventas.`det_precio` AS detalleventas_det_precio,
+     detalleventas.`det_cantidad` AS detalleventas_det_cantidad,
+     productos.`idproductos` AS productos_idproductos,
+     productos.`pro_nombre` AS productos_pro_nombre,
+     productos.`pro_costo` AS productos_pro_costo,
+     productos.`pro_precio` AS productos_pro_precio,
+     productos.`pro_stock` AS productos_pro_stock,
+     productos.`pro_minimo` AS productos_pro_minimo,
+     productos.`pro_iva` AS productos_pro_iva,
+     productos.`idproveedores` AS productos_idproveedores,
+if(productos.`pro_iva`='0', detalleventas.`det_cantidad`*detalleventas.`det_precio`,'')as exenta,
+if(productos.`pro_iva`='5', detalleventas.`det_cantidad`*detalleventas.`det_precio`,'')as cinco,
+if(productos.`pro_iva`='10', detalleventas.`det_cantidad`*detalleventas.`det_precio`,'')as diez
+FROM
+     `productos` productos INNER JOIN `detalleventas` detalleventas ON productos.`idproductos` = detalleventas.`idproductos`
+where  detalleventas.`idventas`=$P{factura}]]>
+	</queryString>
+	<field name="detalleventas_idventas" class="java.lang.Integer"/>
+	<field name="detalleventas_idproductos" class="java.lang.Integer"/>
+	<field name="detalleventas_det_precio" class="java.lang.Integer"/>
+	<field name="detalleventas_det_cantidad" class="java.lang.Integer"/>
+	<field name="productos_idproductos" class="java.lang.Integer"/>
+	<field name="productos_pro_nombre" class="java.lang.String"/>
+	<field name="productos_pro_costo" class="java.lang.Integer"/>
+	<field name="productos_pro_precio" class="java.lang.Integer"/>
+	<field name="productos_pro_stock" class="java.lang.Integer"/>
+	<field name="productos_pro_minimo" class="java.lang.Integer"/>
+	<field name="productos_pro_iva" class="java.lang.String"/>
+	<field name="productos_idproveedores" class="java.lang.Integer"/>
+	<field name="exenta" class="java.lang.String"/>
+	<field name="cinco" class="java.lang.String"/>
+	<field name="diez" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="57" height="20" uuid="a3e97314-10e6-4953-a54b-7d97a36ccf1b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dubai Medium"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleventas_det_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="0" width="207" height="20" uuid="783cfd2b-441b-4db4-bd06-31f479bd0da9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dubai Medium"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productos_pro_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="0" width="74" height="20" uuid="13904926-500e-4a7e-ad2f-2647219bc604"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dubai Medium"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleventas_det_precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="0" width="85" height="20" uuid="a83afa0c-9003-4b7a-b539-a8e1b8a90282"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dubai Medium"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{exenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="0" width="66" height="20" uuid="8e6723f6-f081-41ef-a780-aefa19f798cd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dubai Medium"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cinco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="0" width="66" height="20" uuid="a8a6b7cf-cf15-47bd-bea8-b4713f4c4fd9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dubai Medium"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diez}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
