@@ -156,6 +156,10 @@
                         </div>
                         <div class="card-body">
                             <form action="comprascontrolador" method="post">
+                                <%  comprasmodelo facturaModelo = new comprasmodelo();
+                                    String ultimoNumeroFacturaPago = facturaModelo.obtenerUltimoNumeroFacturaPago();
+                                    int nuevoNumeroFactura = Integer.parseInt(ultimoNumeroFacturaPago) + 1;
+                                %>
                                 <input type="hidden" name="lblcodigo" value="<%= sesion.getAttribute("codigo")%>">
                                 <div class="container">
                                     <div class="window">
@@ -164,7 +168,7 @@
                                                 <tbody>
                                                     <tr class="table-dark">
                                                         <td>Nº COMPRAS</td>
-                                                        <td><input type="text" class="form-control" name="txtnumero"></td>
+                                                        <td><input type="text" class="form-control" name="txtnumero" value="<%= nuevoNumeroFactura%>" readonly></td>
                                                     </tr>
                                                     <tr class="table-dark">
                                                         <td>CONDICIÓN</td>

@@ -38,7 +38,7 @@ FROM
 	<title>
 		<band height="132" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#003333" uuid="462afd97-146e-4326-8097-6eb3dabeab3f"/>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#191919" uuid="462afd97-146e-4326-8097-6eb3dabeab3f"/>
 				<staticText>
 					<reportElement style="Title" x="43" y="0" width="254" height="66" uuid="c7732fdc-29da-4cfa-b137-9a290739700d"/>
 					<textElement>
@@ -55,7 +55,7 @@ FROM
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#006666" uuid="e90d7930-9afb-48e8-baf7-2763326f7cd8"/>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#373737" uuid="e90d7930-9afb-48e8-baf7-2763326f7cd8"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="30708402-3c5f-481a-9fba-66ab0db2c609"/>
 					<textElement textAlignment="Right">
@@ -65,8 +65,8 @@ FROM
 				</textField>
 			</frame>
 			<image>
-				<reportElement x="456" y="0" width="99" height="132" uuid="c88838c8-3110-4456-b087-4b4941b31f49"/>
-				<imageExpression><![CDATA[".\\logo2.jpg"]]></imageExpression>
+				<reportElement x="456" y="0" width="99" height="132" uuid="bddf0e40-8f9b-45be-8915-12a48e174491"/>
+				<imageExpression><![CDATA[".\\logo3.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -199,7 +199,7 @@ FROM
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#003333" uuid="bc28792a-83c5-4079-899b-8d634f02dcad"/>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#191919" uuid="bc28792a-83c5-4079-899b-8d634f02dcad"/>
 				<textField evaluationTime="Report">
 					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="d6839b04-6a66-49f8-9568-30acefd925e1"/>
 					<textElement verticalAlignment="Middle">

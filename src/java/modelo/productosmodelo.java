@@ -10,9 +10,25 @@ import java.util.logging.Logger;
 
 public class productosmodelo {
 
-    private String codigo, nombre, costo, precio, stock, minimo, proveedor, iva, mensaje;
+    private String codigo, nombre, costo, precio, stock, minimo, proveedor, iva, mensaje, proveedornombre, categoria;
     Statement st;
     ResultSet rs;
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getProveedornombre() {
+        return proveedornombre;
+    }
+
+    public void setProveedornombre(String proveedornombre) {
+        this.proveedornombre = proveedornombre;
+    }
 
     public String getCodigo() {
         return codigo;
@@ -88,7 +104,8 @@ public class productosmodelo {
 
     public List listar() {
         ArrayList<productosmodelo> list = new ArrayList<>();
-        String sql = "select * from productos";
+        String sql = "SELECT p.idproductos, p.pro_nombre, p.pro_costo, p.pro_precio, p.pro_stock, p.pro_minimo, p.pro_iva, p.idproveedores, p.pro_categoria, pro.prov_nombre FROM productos p\n"
+                + "INNER JOIN proveedores pro on p.idproveedores = pro.idproveedores";
 
         try {
             st = utilidades.conexion.sta(st);
@@ -103,7 +120,8 @@ public class productosmodelo {
                 modelo.setStock(rs.getString("pro_stock"));
                 modelo.setMinimo(rs.getString("pro_minimo"));
                 modelo.setIva(rs.getString("pro_iva"));
-                modelo.setProveedor(rs.getString("idproveedores"));
+                modelo.setCategoria(rs.getString("pro_categoria"));
+                modelo.setProveedor(rs.getString("prov_nombre"));
                 list.add(modelo);
             }
 
@@ -117,8 +135,8 @@ public class productosmodelo {
     }
 
     public void guardar() {
-        String sql = "insert into productos(idproductos, pro_nombre, pro_costo, pro_precio, pro_stock, pro_minimo, pro_iva, idproveedores) "
-                + "value ('" + codigo + "', '" + nombre + "', '" + costo + "', '" + precio + "', '" + stock + "', '" + minimo + "', '" + iva + "', '" + proveedor + "')";
+        String sql = "insert into productos(idproductos, pro_nombre, pro_costo, pro_precio, pro_stock, pro_minimo, pro_iva, pro_categoria, idproveedores) "
+                + "value ('" + codigo + "', '" + nombre + "', '" + costo + "', '" + precio + "', '" + stock + "', '" + minimo + "', '" + iva + "', '" + categoria + "', '" + proveedor + "')";
 
         try {
             st = utilidades.conexion.sta(st);
@@ -132,7 +150,8 @@ public class productosmodelo {
 
     public List listarporid(String id) {
         ArrayList<productosmodelo> list = new ArrayList<>();
-        String sql = "select * from productos where idproductos = '" + id + "'";
+        String sql = "SELECT p.idproductos, p.pro_nombre, p.pro_costo, p.pro_precio, p.pro_stock, p.pro_minimo, p.pro_iva, p.idproveedores, p.pro_categoria, pro.prov_nombre FROM productos p\n"
+                + "INNER JOIN proveedores pro on p.idproveedores = pro.idproveedores where idproductos = " + id + "";
         try {
             st = utilidades.conexion.sta(st);
             rs = st.executeQuery(sql);
@@ -145,7 +164,9 @@ public class productosmodelo {
                 modelo.setStock(rs.getString("pro_stock"));
                 modelo.setMinimo(rs.getString("pro_minimo"));
                 modelo.setIva(rs.getString("pro_iva"));
+                modelo.setCategoria(rs.getString("pro_categoria"));
                 modelo.setProveedor(rs.getString("idproveedores"));
+                modelo.setProveedornombre(rs.getString("prov_nombre"));
                 list.add(modelo);
             }
 
@@ -165,6 +186,7 @@ public class productosmodelo {
                 + "pro_stock='" + stock + "',"
                 + "pro_minimo='" + minimo + "',"
                 + "pro_iva='" + iva + "',"
+                + "pro_categoria='" + categoria + "',"
                 + "idproveedores='" + proveedor + "' where idproductos='" + codigo + "'";
 
         try {
@@ -187,5 +209,24 @@ public class productosmodelo {
         } catch (SQLException ex) {
             Logger.getLogger(productosmodelo.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+     public String obtenerUltimoNumeroFacturaPago() {
+        String sql = "SELECT MAX(idproductos) as ultimoNumero FROM productos";
+        String ultimoNumero = "0";
+        try {
+            st = utilidades.conexion.sta(st);
+            rs = st.executeQuery(sql);
+            if (rs.next()) {
+                ultimoNumero = rs.getString("ultimoNumero");
+                if (ultimoNumero == null) {
+                    ultimoNumero = "0";
+                }
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(clientemodelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ultimoNumero;
     }
 }

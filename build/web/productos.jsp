@@ -22,6 +22,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="productoscontrolador" method="post">
+                    <br><br><br>
                     <h1>FORMULARIO PRODUCTOS</h1>
                     <a href="vistas/guardarproductos.jsp" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">GUARDAR PRODUCTO</a>
                     <button type="submit" name="accion" value="informe" class="btn w-80" style="background-color: #1E81B0; border-color: #1E81B0; color: white;">IMPRIMIR</button>
@@ -36,6 +37,7 @@
                             <th>STOCK</th>
                             <th>MINIMO</th>
                             <th>IVA</th>
+                            <th>CATEGORIA</th>
                             <th>PROVEEDOR</th>
                             <th>ACCION</th>
                         <tr>  
@@ -49,7 +51,7 @@
                                 m = iter.next();
 
                         %>
-                        <tr>
+                        <tr class="table-dark">
                             <td><%= m.getCodigo()%></td>
                             <td><%= m.getNombre()%></td>
                             <td><%= m.getCosto()%></td>
@@ -57,13 +59,14 @@
                             <td><%= m.getStock()%></td>
                             <td><%= m.getMinimo()%></td>
                             <td><%= m.getIva()%></td>
+                            <td><%= m.getCategoria()%></td>
                             <td><%= m.getProveedor()%></td>
                             <td>
-                                <a href="vistas/modificarproductos.jsp?id=<%= m.getCodigo()%>" class="btn w-50" style="background-color: #00214D; border-color: #00214D; color: white;">EDITAR</a>
+                                <a href="vistas/modificarproductos.jsp?id=<%= m.getCodigo()%>" class="btn w-100" style="background-color: #00214D; border-color: #00214D; color: white;">EDITAR</a>
                                 <form action="productoscontrolador" method="post">
                                     <input type="hidden" name="accion" value="delete">
                                     <input type="hidden" name="id" value="<%= m.getCodigo()%>">
-                                    <button type="submit" class="btn w-50" style="background-color: #B11226; border-color: #B11226; color: white;">ELIMINAR</button>
+                                    <button type="submit" class="btn w-100" style="background-color: #B11226; border-color: #B11226; color: white;">ELIMINAR</button>
                                 </form>
                             </td>
                         </tr>

@@ -34,7 +34,7 @@ FROM
 	<title>
 		<band height="132" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#003333" uuid="2ff56487-2736-4193-9c7a-66763c71746d"/>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#191919" uuid="2ff56487-2736-4193-9c7a-66763c71746d"/>
 				<staticText>
 					<reportElement style="Title" x="0" y="0" width="266" height="66" uuid="a3f859c8-48b2-4497-9041-9396756e3167"/>
 					<textElement>
@@ -51,7 +51,7 @@ FROM
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#006666" uuid="f3bc1d83-ba1d-4646-8d18-51797ed357e4"/>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#373737" uuid="f3bc1d83-ba1d-4646-8d18-51797ed357e4"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="2f5dffd6-3386-4bf8-85f9-cc51e1905f3f"/>
 					<textElement textAlignment="Right">
@@ -61,8 +61,8 @@ FROM
 				</textField>
 			</frame>
 			<image>
-				<reportElement x="457" y="0" width="100" height="132" uuid="c4b58b63-ecb8-40da-9b83-3180511d0f65"/>
-				<imageExpression><![CDATA["C:\\Users\\manu_\\Desktop\\Programación V\\clase 6\\proyecto\\report\\logo2.jpg"]]></imageExpression>
+				<reportElement x="456" y="0" width="99" height="132" uuid="d797624f-0e1e-4cdf-8678-4fe743e3fe30"/>
+				<imageExpression><![CDATA[".\\logo3.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -178,7 +178,7 @@ FROM
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#003333" uuid="d73f0fdf-0f6d-407f-9d7f-a556ce56d21e"/>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#191919" uuid="d73f0fdf-0f6d-407f-9d7f-a556ce56d21e"/>
 				<textField evaluationTime="Report">
 					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="62d0ffd2-5e14-4019-8f13-ff389a59a90c"/>
 					<textElement verticalAlignment="Middle">

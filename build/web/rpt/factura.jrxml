@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5fc0722-71ec-4720-b6be-879e6085b75f">
 	<property name="ireport.zoom" value="1.6105100000000014"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="123"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="factura" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -58,37 +58,33 @@ where ventas.`idventas`=$P{factura}]]>
 			<line>
 				<reportElement x="0" y="105" width="270" height="1" uuid="23f447e9-794d-4fb3-8ac3-95108de236ea"/>
 			</line>
-			<image>
-				<reportElement x="12" y="22" width="65" height="65" uuid="9931bfde-60d3-4cea-b14c-7bd553e7e676"/>
-				<imageExpression><![CDATA[".\\logo1.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="77" y="22" width="193" height="25" uuid="8a8392ae-bfdb-4de2-8cb9-2d734e69f913"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Dubai Medium" size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[FARCMARC]]></text>
+				<text><![CDATA[JG]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="77" y="47" width="193" height="20" uuid="ebdff8c4-c52d-4208-9bf4-175600241916"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Dubai Medium" isBold="false"/>
+					<font fontName="Dubai Medium" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[de Marcos Alejandro Martínez Gaona]]></text>
+				<text><![CDATA[BARBERIA & PELUQUERIA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="77" y="67" width="193" height="20" uuid="d84da6e6-be54-47ed-a1cf-47a5c53fa73f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Dubai Medium"/>
 				</textElement>
-				<text><![CDATA[Teléfono: 0986452877]]></text>
+				<text><![CDATA[Teléfono: 0986202684]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="106" width="270" height="37" uuid="2a4e87ca-866b-4ec5-99b8-300f41611f56"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Dubai Medium" size="14"/>
 				</textElement>
-				<text><![CDATA[Itauguá - Paraguay]]></text>
+				<text><![CDATA[Ypacaraí - Paraguay]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="285" y="22" width="270" height="20" uuid="fe930152-f218-4f20-aca2-a5f5b2813383"/>
@@ -247,6 +243,10 @@ where ventas.`idventas`=$P{factura}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{clientes_cli_telefono}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="12" y="22" width="65" height="65" uuid="61386003-a47c-4fab-a434-c9a7f94f98af"/>
+				<imageExpression><![CDATA[".\\logo4.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>

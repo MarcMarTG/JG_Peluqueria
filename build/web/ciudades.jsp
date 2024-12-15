@@ -22,7 +22,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="ciudadcontrolador" method="post">
-                    <br>
+                    <br><br><br>
                     <h1>FORMULARIO CIUDAD</h1>
                     <div class = "buttons">
                         <a href="vistas/guardar_ciudad.jsp" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">GUARDAR CIUDAD</a>

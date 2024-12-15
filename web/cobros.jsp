@@ -16,7 +16,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="cobroscontrolador" method="post">
-                    <br>
+                    <br><br><br>
                     <h1>FORMULARIO COBROS</h1>
                     <div class = "buttons">
                         <button type="submit" name="accion" value="add" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">AGREGAR UN NUEVO COBRO</button>

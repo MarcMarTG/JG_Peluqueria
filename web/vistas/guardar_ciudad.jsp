@@ -1,4 +1,5 @@
 
+<%@page import="modelo.ciudadmodelo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,9 +31,13 @@
                         <div class="card-body">
                             <h1 class="text-center mb-4">AGREGAR UNA NUEVA CIUDAD</h1>
                             <form action="../ciudadcontrolador" method="post">
+                                <%  ciudadmodelo facturaModelo = new ciudadmodelo();
+                                    String ultimoNumeroFacturaPago = facturaModelo.obtenerUltimoNumeroFacturaPago();
+                                    int nuevoNumeroFactura = Integer.parseInt(ultimoNumeroFacturaPago) + 1;
+                                %>
                                 <div class="form-group">
                                     <label for="txtcodigo">CÓDIGO</label>
-                                    <input type="text" name="txtcodigo" id="txtcodigo" class="form-control">
+                                    <input type="text" name="txtcodigo"  value="<%= nuevoNumeroFactura%>" readonly id="txtcodigo" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="txtnombre">NOMBRE</label>

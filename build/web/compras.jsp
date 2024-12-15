@@ -23,6 +23,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="comprascontrolador" method="post">
+                    <br><br><br>
                     <h1>FORMULARIO COMPRAS</h1>
                     <div class = "buttons">
                         <button type="submit" name="accion" value="add" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">AGREGAR UNA NUEVA COMPRA</button>
@@ -49,7 +50,7 @@
                                 while (iter.hasNext()) {
                                     m = iter.next();
                             %>
-                            <tr>
+                            <tr class="table-dark">
                                 <td><%=m.getIdcompras()%></td>
                                 <td><%=m.getFecha()%></td>
                                 <td><%=m.getCondicion()%></td>

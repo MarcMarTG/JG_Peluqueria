@@ -22,6 +22,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="facturacontrolador" method="post">
+                    <br><br><br>
                     <h1>FORMULARIO FACTURACION</h1>
                     <div class = "buttons">
                         <button type="submit" name="accion" value="add" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">AGREGAR UNA NUEVA FACTURA</button>
@@ -49,7 +50,7 @@
                             while (iter.hasNext()) {
                                 m = iter.next();
                         %>
-                            <tr>
+                            <tr class="table-dark">
                                 <td><%=m.getIdfacturacion()%></td>
                                 <td><%=m.getFecha()%></td>
                                 <td><%=m.getCondicion()%></td>

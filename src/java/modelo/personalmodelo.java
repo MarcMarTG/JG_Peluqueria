@@ -10,9 +10,17 @@ import java.util.logging.Logger;
 
 public class personalmodelo {
 
-    private String codigo, nombre, apellido, ci, telefono, mensaje;
+    private String codigo, nombre, apellido, ci, telefono, mensaje, nombrecompleto;
     Statement st;
     ResultSet rs;
+
+    public String getNombrecompleto() {
+        return nombrecompleto;
+    }
+
+    public void setNombrecompleto(String nombrecompleto) {
+        this.nombrecompleto = nombrecompleto;
+    }
 
     public String getCodigo() {
         return codigo;
@@ -89,6 +97,31 @@ public class personalmodelo {
         return list;
     }
 
+    public List listar2() {
+        ArrayList<personalmodelo> list2 = new ArrayList<>();
+        String sql = "SELECT idpersonales, per_nombre, per_apellido, concat(per_nombre,' ',per_apellido) as nombrecompleto FROM personales";
+
+        try {
+            st = utilidades.conexion.sta(st);
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                personalmodelo modelo = new personalmodelo();
+                modelo.setCodigo(rs.getString("idpersonales"));
+                modelo.setNombrecompleto(rs.getString("nombrecompleto"));
+
+                list2.add(modelo);
+            }
+
+            st.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(personalmodelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list2;
+    }
+
     public void guardar() {
         String sql = "insert into personales(idpersonales, per_nombre, per_apellido, per_ci, per_telefono) "
                 + "value ('" + codigo + "', '" + nombre + "', '" + apellido + "', '" + ci + "', '" + telefono + "')";
@@ -154,5 +187,25 @@ public class personalmodelo {
         } catch (SQLException ex) {
             Logger.getLogger(personalmodelo.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public String obtenerUltimoNumeroFacturaPago() {
+        String sql = "SELECT MAX(idpersonales) as ultimoNumero FROM personales";
+        String ultimoNumero = "0";
+        try {
+            st = utilidades.conexion.sta(st);
+            rs = st.executeQuery(sql);
+            if (rs.next()) {
+                ultimoNumero = rs.getString("ultimoNumero");
+                if (ultimoNumero == null) {
+                    ultimoNumero = "0";
+                }
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(clientemodelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ultimoNumero;
     }
 }

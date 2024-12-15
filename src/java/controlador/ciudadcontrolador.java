@@ -89,7 +89,7 @@ public class ciudadcontrolador extends HttpServlet {
             modelo.eliminar(request.getParameter("id"));
             acceso = "ciudades.jsp";
         } else if (action.equalsIgnoreCase("informe")) {
-            acceso = "reportes/rptciu.jsp";
+            acceso = "reportes/rptciudad.jsp";
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);

@@ -1,4 +1,5 @@
 
+<%@page import="modelo.pagosmodelo"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="modelo.comprasmodelo"%>
 <%@page import="java.util.List"%>
@@ -155,6 +156,10 @@
                         </div>
                         <div class="card-body">
                             <form action="pagoscontrolador" method="post">
+                                <%  pagosmodelo facturaModelo = new pagosmodelo();
+                                    String ultimoNumeroFacturaPago = facturaModelo.obtenerUltimoNumeroFacturaPago();
+                                    int nuevoNumeroFactura = Integer.parseInt(ultimoNumeroFacturaPago) + 1;
+                                %>
                                 <input type="hidden" name="lblcodigo" value="<%= sesion.getAttribute("codigo")%>">
                                 <div class="container">
                                     <div class="window">
@@ -163,7 +168,7 @@
                                                 <tbody>
                                                     <tr class="table-dark">
                                                         <td>N° PAGO</td>
-                                                        <td><input type="text" class="form-control" name="txtcodigo" id="txtcodigo"></td>
+                                                        <td><input type="text" class="form-control" name="txtcodigo" id="txtcodigo" value="<%= nuevoNumeroFactura%>" readonly></td>
                                                     </tr>
                                                     <tr class="table-dark">
                                                         <td>FECHA</td>

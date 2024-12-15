@@ -1,8 +1,10 @@
-
 package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,9 +32,9 @@ public class usuariocontrolador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
- 
+
         }
     }
 
@@ -62,35 +64,50 @@ public class usuariocontrolador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String acceso ="";
-        String action= request.getParameter("accion");
- 
-        if(action.equalsIgnoreCase("Agregar")){
+
+        String acceso = "";
+        String action = request.getParameter("accion");
+
+        if (action.equalsIgnoreCase("Agregar")) {
             usuariomodelo modelo = new usuariomodelo();
             modelo.setCodigo(request.getParameter("txtcodigo"));
             modelo.setNombre(request.getParameter("txtnombre"));
             modelo.setPass(request.getParameter("txtpass"));
-            modelo.setTipo(request.getParameter("txttipo"));
-            modelo.setEstado(request.getParameter("txtestado"));
             modelo.setPersonal(request.getParameter("txtpersonal"));
+
+            String tipo = request.getParameter("tipo");
+            String tipo2 = (tipo != null && tipo.equalsIgnoreCase("INVITADO")) ? "INVITADO" : "ADMINISTRADOR";
+            modelo.setTipo(tipo2);
+
+            String estado = request.getParameter("estado");
+            String estado2 = (estado != null && estado.equalsIgnoreCase("ACTIVO")) ? "ACTIVO" : "INACTIVO";
+            modelo.setEstado(estado2);
+
             modelo.guardar();
-            acceso="usuarios.jsp";
-        }else if(action.equalsIgnoreCase("Editar")){
+            acceso = "usuarios.jsp";
+        } else if (action.equalsIgnoreCase("Editar")) {
             usuariomodelo modelo = new usuariomodelo();
-           modelo.setCodigo(request.getParameter("txtcodigo"));
+            modelo.setCodigo(request.getParameter("txtcodigo"));
             modelo.setNombre(request.getParameter("txtnombre"));
             modelo.setPass(request.getParameter("txtpass"));
-            modelo.setTipo(request.getParameter("txttipo"));
-            modelo.setEstado(request.getParameter("txtestado"));
+
+            String tipo = request.getParameter("tipo");
+            String tipo2 = (tipo != null && tipo.equalsIgnoreCase("INVITADO")) ? "INVITADO" : "ADMINISTRADOR";
+            modelo.setTipo(tipo2);
+
+            String estado = request.getParameter("estado");
+            String estado2 = (estado != null && estado.equalsIgnoreCase("ACTIVO")) ? "ACTIVO" : "INACTIVO";
+            modelo.setEstado(estado2);
+
             modelo.setPersonal(request.getParameter("txtpersonal"));
             modelo.modificar();
-            acceso="usuarios.jsp";
-        }else if(action.equalsIgnoreCase("delete")){
+            acceso = "usuarios.jsp";
+        } else if (action.equalsIgnoreCase("delete")) {
             usuariomodelo modelo = new usuariomodelo();
             modelo.eliminar(request.getParameter("id"));
-            acceso="usuarios.jsp";
-        }else if (action.equalsIgnoreCase("informe")) {
-            acceso ="reportes/rptusuarios.jsp";
+            acceso = "usuarios.jsp";
+        } else if (action.equalsIgnoreCase("informe")) {
+            acceso = "reportes/rptusuarios.jsp";
         }
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);

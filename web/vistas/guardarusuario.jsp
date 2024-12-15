@@ -4,6 +4,10 @@
     Author     : manu_
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="modelo.personalmodelo"%>
+<%@page import="modelo.usuariomodelo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,6 +24,38 @@
                 background-attachment: fixed;
                 color: white;
             }
+            .modal{
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+            }
+            .modal-contenido{
+                background-image: url('../img/fondo_menu.png');
+                margin: 5% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 1080px;
+                height: 600px;
+                overflow: auto;
+                text-align: center;
+            }
+            .cerrar{
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .cerrar:hover,
+            .cerrar:focus{
+                color: #000;
+            }
+
         </style>
     </head>
     <body>
@@ -36,9 +72,13 @@
                         <div class="card-body">
                             <h1 class="text-center mb-4">AGREGAR UN NUEVO USUARIO</h1>
                             <form action="../usuariocontrolador" method="post">
+                                <%  usuariomodelo facturaModelo = new usuariomodelo();
+                                    String ultimoNumeroFacturaPago = facturaModelo.obtenerUltimoNumeroFacturaPago();
+                                    int nuevoNumeroFactura = Integer.parseInt(ultimoNumeroFacturaPago) + 1;
+                                %>
                                 <div class="form-group">
                                     <label for="txtcodigo">CÓDIGO</label>
-                                    <input type="text" name="txtcodigo" id="txtcodigo" class="form-control">
+                                    <input type="text" name="txtcodigo" value="<%= nuevoNumeroFactura%>" readonly id="txtcodigo" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="txtnombre">NOMBRE</label>
@@ -49,26 +89,101 @@
                                     <input type="password" name="txtpass" id="txtpass" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="txttipo">TIPO</label>
-                                    <input type="text" name="txttipo" id="txttipo" class="form-control">
+                                    <label for="tipo" class="form-label">TIPO</label>
+                                    <select name="tipo" id="tipo" class="form-select bg-dark text-white border-light">
+                                        <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                        <option value="INVITADO">INVITADO</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="txtestado">ESTADO</label>
-                                    <input type="text" name="txtestado" id="txtestado" class="form-control">
+                                    <label for="estado" class="form-label">ESTADO</label>
+                                    <select name="estado" id="estado" class="form-select bg-dark text-white border-light">
+                                        <option value="ACTIVO">ACTIVO</option>
+                                        <option value="INACTIVO">INACTIVO</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="txtpersonal">ID</label> 
+                                    <button type="button" name="btnbuscarper" onclick="mostrarModal()" class="btn w-20" style="background-color: #00214D; border-color: #00214D; color: white;">BUSCAR</button>
+                                    <input type="text" class="form-control" id="txtpersonal" name="txtpersonal">
                                     <label for="txtpersonal">PERSONAL</label>
-                                    <input type="text" name="txtpersonal" id="txtpersonal" class="form-control">
+                                    <input type="text" class="form-control" id="txtpernombre" name="txtpernombre">
                                 </div>
 
                                 <button type="submit" name="accion" value="Agregar" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">AGREGAR</button>
                                 <a href="../usuarios.jsp" class="btn w-80" style="background-color: #1E81B0; border-color: #1E81B0; color: white;">REGRESAR</a>
+
+
+
+                                <div id="miModal" class="modal">
+                                    <div class="modal-contenido" id="modal-contenido">
+                                        <div class="card-header" style="padding-left: 20px; font-size: 26px; text-decoration: bold;">
+                                            BUSCADOR DE PERSONALES
+                                            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+                                        </div>
+                                        <table class="table table-striped text-center">
+                                            <thead>
+                                                <tr class="table-dark">
+                                                    <th>CODIGO</th>
+                                                    <th>NOMBRE</th>
+                                                    <th>ACCION</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    personalmodelo modelo = new personalmodelo();
+                                                    List<personalmodelo> list2 = modelo.listar2();
+                                                    Iterator<personalmodelo> iter = list2.iterator();
+                                                    personalmodelo m = null;
+                                                    while (iter.hasNext()) {
+                                                        m = iter.next();
+                                                %>
+                                                <tr class="table-dark">
+                                                    <td><span class="dato-input p-2 bg-dark"><%= m.getCodigo()%></span></td>
+                                                    <td><span class="dato-input p-2 bg-dark"><%= m.getNombrecompleto()%></span></td>
+                                                    <td><button type="button" onclick="obtenerfilaper(this)" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">SELECCIONAR</button></td>
+                                                </tr>
+                                                <% }%>
+                                            </tbody>
+                                        </table>
+                                    </div>  
+                                </div>
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
 
+            function mostrarModal() {
+                event.preventDefault();
+                document.getElementById("miModal").style.display = "block";
+            }
+            function cerrarModal() {
+                event.preventDefault();
+                document.getElementById("miModal").style.display = "none";
+            }
+            function obtenerfilaper(boton) {
+                event.preventDefault();
+
+                var fila = boton.parentNode.parentNode;
+                var celdas = fila.getElementsByTagName("td");
+                var datosFila = [];
+
+                for (var i = 0; i < celdas.length - 1; i++) {
+                    var valor = celdas[i].querySelector(".dato-input").textContent;
+                    datosFila.push(valor);
+                }
+                document.getElementById("txtpersonal").value = datosFila[0];
+                document.getElementById("txtpernombre").value = datosFila[1];
+                cerrarModal();
+            }
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     </body>
 </html>

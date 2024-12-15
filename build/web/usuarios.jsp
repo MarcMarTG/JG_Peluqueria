@@ -21,6 +21,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="usuariocontrolador" method="post">
+                    <br><br><br>
                     <h1>FORMULARIO USUARIO</h1>
                     <a href="vistas/guardarusuario.jsp" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">GUARDAR USUARIO</a>
                     <button type="submit" name="accion" value="informe" class="btn w-80" style="background-color: #1E81B0; border-color: #1E81B0; color: white;">IMPRIMIR</button>

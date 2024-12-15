@@ -22,6 +22,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="proveedorcontrolador" method="post">
+                    <br><br><br>
                     <h1>FORMULARIO PROVEEDORES</h1>
                     <a href="vistas/guardarproveedor.jsp" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">GUARDAR PROVEEDOR</a>
                     <button type="submit" name="accion" value="informe" class="btn w-80" style="background-color: #1E81B0; border-color: #1E81B0; color: white;">IMPRIMIR</button>
@@ -46,7 +47,7 @@
                             while (iter.hasNext()) {
                                 m = iter.next();
                         %>
-                        <tr>
+                        <tr class="table-dark">
                             <td><%= m.getCodigo()%></td>
                             <td><%= m.getNombre()%></td>
                             <td><%= m.getRuc()%></td>

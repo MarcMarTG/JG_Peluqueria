@@ -35,7 +35,7 @@
                 background-color: rgba(0,0,0,0.5);
             }
             .modal-contenido{
-                background-image: url('img/fondo_menu.png');
+                background-image: url('../img/fondo_menu.png');
                 margin: 5% auto;
                 padding: 20px;
                 border: 1px solid #888;
@@ -102,7 +102,7 @@
                                     <button type="button" name="btnbuscarciu" onclick="mostrarModal()" class="btn w-20" style="background-color: #00214D; border-color: #00214D; color: white;">BUSCAR</button>
                                     <input type="text" class="form-control" id="txtciudad" name="txtciudad">
                                     <label for="txtciudad">CIUDAD</label>
-                                    <input type="text" class="form-control" id="txtciudadnombre" name="txtciudadombre">
+                                    <input type="text" class="form-control" id="txtciudadnombre" name="txtciudadnombre">
                                 </div>
 
                                 <button type="submit" name="accion" value="Agregar" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">AGREGAR</button>
@@ -112,7 +112,7 @@
 
 
                                 <div id="miModal" class="modal">
-                                    <div class="modal-contenido">
+                                    <div class="modal-contenido" id="modal-contenido">
                                         <div class="card-header" style="padding-left: 20px; font-size: 26px; text-decoration: bold;">
                                             BUSCADOR DE CIUDADES
                                             <span class="cerrar" onclick="cerrarModal()">&times;</span>
@@ -175,9 +175,9 @@
                     document.getElementById("txtciudadnombre").value = datosFila[1];
                     cerrarModal();
                 }
-                <script/>
+                </script>
 
-                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 

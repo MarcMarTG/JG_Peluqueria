@@ -14,14 +14,6 @@ public class clientemodelo {
     Statement st;
     ResultSet rs;
 
-    public String getCiudadnombre() {
-        return Ciudadnombre;
-    }
-
-    public void setCiudadnombre(String Ciudadnombre) {
-        this.Ciudadnombre = Ciudadnombre;
-    }
-
     public String getCodigo() {
         return codigo;
     }
@@ -78,11 +70,21 @@ public class clientemodelo {
         this.mensaje = mensaje;
     }
 
+    public String getCiudadnombre() {
+        return Ciudadnombre;
+    }
+
+    public void setCiudadnombre(String Ciudadnombre) {
+        this.Ciudadnombre = Ciudadnombre;
+    }
+
+    
+
     public List listar() {
         ArrayList<clientemodelo> list = new ArrayList<>();
         String sql = "SELECT clientes.idclientes, clientes.cli_nombre, clientes.cli_apellido, clientes.cli_ruc, clientes.cli_telefono, ciudades.ciu_nombre\n"
                 + "FROM clientes\n"
-                + "INNER JOIN ciudades ON clientes.ciudades_idciudades = ciudades.idciudades";
+                + "INNER JOIN ciudades ON clientes.idciudades = ciudades.idciudades";
 
         try {
             st = utilidades.conexion.sta(st);
@@ -108,7 +110,7 @@ public class clientemodelo {
     }
 
     public void guardar() {
-        String sql = "insert into clientes(idclientes, cli_nombre, cli_apellido, cli_ruc, cli_telefono, ciudades_idciudades) "
+        String sql = "INSERT INTO clientes (idclientes, cli_nombre, cli_apellido, cli_ruc, cli_telefono, idciudades) "
                 + "value ('" + codigo + "', '" + nombre + "', '" + apellido + "', '" + ruc + "', '" + telefono + "', '" + ciudad + "')";
 
         try {
@@ -123,9 +125,9 @@ public class clientemodelo {
 
     public List listarporid(String id) {
         ArrayList<clientemodelo> list = new ArrayList<>();
-        String sql = "SELECT clientes.idclientes, clientes.cli_nombre, clientes.cli_apellido, clientes.cli_ruc, clientes.cli_telefono,ciudades_idciudades, ciudades.ciu_nombre\n"
+        String sql = "SELECT clientes.idclientes, clientes.cli_nombre, clientes.cli_apellido, clientes.cli_ruc, clientes.cli_telefono, clientes.idciudades, ciudades.ciu_nombre\n"
                 + "FROM clientes\n"
-                + "INNER JOIN ciudades ON clientes.ciudades_idciudades = ciudades.idciudades  where idclientes = " + id + "";
+                + "INNER JOIN ciudades ON clientes.idciudades = ciudades.idciudades where idclientes = " + id + "";
         try {
             st = utilidades.conexion.sta(st);
             rs = st.executeQuery(sql);
@@ -136,7 +138,7 @@ public class clientemodelo {
                 modelo.setApellido(rs.getString("cli_apellido"));
                 modelo.setRuc(rs.getString("cli_ruc"));
                 modelo.setTelefono(rs.getString("cli_telefono"));
-                modelo.setCiudad(rs.getString("ciudades_idciudades"));
+                modelo.setCiudad(rs.getString("idciudades"));
                 modelo.setCiudadnombre(rs.getString("ciu_nombre"));
                 list.add(modelo);
             }
@@ -155,7 +157,7 @@ public class clientemodelo {
                 + "cli_apellido='" + apellido + "',"
                 + "cli_ruc='" + ruc + "',"
                 + "cli_telefono='" + telefono + "',"
-                + "ciudades_idciudades='" + ciudad + "' where idclientes='" + codigo + "'";
+                + "idciudades='" + ciudad + "' where idclientes='" + codigo + "'";
 
         try {
             st = utilidades.conexion.sta(st);

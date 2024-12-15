@@ -4,6 +4,7 @@
     Author     : manu_
 --%>
 
+<%@page import="modelo.personalmodelo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,9 +36,13 @@
                         <div class="card-body">
                             <h1 class="text-center mb-4">AGREGAR UN NUEVO PERSONAL</h1>
                             <form action="../personalcontrolador" method="post">
+                                <%  personalmodelo facturaModelo = new personalmodelo();
+                                    String ultimoNumeroFacturaPago = facturaModelo.obtenerUltimoNumeroFacturaPago();
+                                    int nuevoNumeroFactura = Integer.parseInt(ultimoNumeroFacturaPago) + 1;
+                                %>
                                 <div class="form-group">
                                     <label for="txtcodigo">CÓDIGO</label>
-                                    <input type="text" name="txtcodigo" id="txtcodigo" class="form-control">
+                                    <input type="text" name="txtcodigo" value="<%= nuevoNumeroFactura%>" readonly id="txtcodigo" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="txtnombre">NOMBRE</label>

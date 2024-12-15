@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class usuariomodelo {
 
-    private String codigo, nombre, pass, tipo, estado, personal, mensaje;
+    private String codigo, nombre, pass, tipo, estado, personal, mensaje, Personalnombre;
     Statement st;
     ResultSet rs;
 
@@ -70,9 +70,20 @@ public class usuariomodelo {
         this.mensaje = mensaje;
     }
 
+    public String getPersonalnombre() {
+        return Personalnombre;
+    }
+
+    public void setPersonalnombre(String Personalnombre) {
+        this.Personalnombre = Personalnombre;
+    }
+
+
     public List listar() {
         ArrayList<usuariomodelo> list = new ArrayList<>();
-        String sql = "select * from usuarios";
+        String sql = "SELECT usuarios.idusuarios, usuarios.usu_nombre, usuarios.usu_clave, usuarios.usu_tipo, usuarios.usu_estado, personales.per_nombre, personales.per_apellido, concat(personales.per_nombre,' ',personales.per_apellido) as nombrecompleto\n"
+                + "FROM usuarios\n"
+                + "INNER JOIN personales ON usuarios.idpersonales = personales.idpersonales";
 
         try {
             st = utilidades.conexion.sta(st);
@@ -85,7 +96,7 @@ public class usuariomodelo {
                 modelo.setPass(rs.getString("usu_clave"));
                 modelo.setTipo(rs.getString("usu_tipo"));
                 modelo.setEstado(rs.getString("usu_estado"));
-                modelo.setPersonal(rs.getString("idpersonales"));
+                modelo.setPersonal(rs.getString("nombrecompleto"));
                 list.add(modelo);
             }
 
@@ -114,7 +125,9 @@ public class usuariomodelo {
 
     public List listarporid(String id) {
         ArrayList<usuariomodelo> list = new ArrayList<>();
-        String sql = "select * from usuarios where idusuarios = '" + id + "'";
+        String sql = "SELECT usuarios.idusuarios, usuarios.usu_nombre, usuarios.usu_clave, usuarios.usu_tipo, usuarios.usu_estado, usuarios.idpersonales, personales.per_nombre, personales.per_apellido, concat(personales.per_nombre,' ',personales.per_apellido) as nombrecompleto\n"
+                + "FROM usuarios\n"
+                + "INNER JOIN personales ON usuarios.idpersonales = personales.idpersonales where idusuarios = " + id + "";
         try {
             st = utilidades.conexion.sta(st);
             rs = st.executeQuery(sql);
@@ -126,6 +139,7 @@ public class usuariomodelo {
                 modelo.setTipo(rs.getString("usu_tipo"));
                 modelo.setEstado(rs.getString("usu_estado"));
                 modelo.setPersonal(rs.getString("idpersonales"));
+                modelo.setPersonalnombre(rs.getString("nombrecompleto"));
                 list.add(modelo);
             }
 
@@ -165,5 +179,25 @@ public class usuariomodelo {
         } catch (SQLException ex) {
             Logger.getLogger(usuariomodelo.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+     public String obtenerUltimoNumeroFacturaPago() {
+        String sql = "SELECT MAX(idusuarios) as ultimoNumero FROM usuarios";
+        String ultimoNumero = "0";
+        try {
+            st = utilidades.conexion.sta(st);
+            rs = st.executeQuery(sql);
+            if (rs.next()) {
+                ultimoNumero = rs.getString("ultimoNumero");
+                if (ultimoNumero == null) {
+                    ultimoNumero = "0";
+                }
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(clientemodelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ultimoNumero;
     }
 }

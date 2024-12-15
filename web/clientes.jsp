@@ -22,7 +22,7 @@
         <div class="container-form">
             <main class="container">
                 <form action="clientecontrolador" method="post">
-                    <br>
+                    <br><br><br>
                     <h1>FORMULARIO CLIENTE</h1>
                     <div class = "buttons">
                         <a href="vistas/guardarcliente.jsp" class="btn w-20" style="background-color: #014421; border-color: #014421; color: white;">GUARDAR CLIENTE</a>

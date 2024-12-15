@@ -1,4 +1,3 @@
-
 package controlador;
 
 import java.io.IOException;
@@ -30,9 +29,9 @@ public class productoscontrolador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           
+
         }
     }
 
@@ -62,10 +61,10 @@ public class productoscontrolador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String acceso ="";
-        String action= request.getParameter("accion");
- 
-        if(action.equalsIgnoreCase("Agregar")){
+        String acceso = "";
+        String action = request.getParameter("accion");
+
+        if (action.equalsIgnoreCase("Agregar")) {
             productosmodelo modelo = new productosmodelo();
             modelo.setCodigo(request.getParameter("txtcodigo"));
             modelo.setNombre(request.getParameter("txtnombre"));
@@ -74,10 +73,15 @@ public class productoscontrolador extends HttpServlet {
             modelo.setStock(request.getParameter("txtstock"));
             modelo.setMinimo(request.getParameter("txtminimo"));
             modelo.setIva(request.getParameter("txtiva"));
+
+            String categoria = request.getParameter("categoria");
+            String categoria2 = (categoria != null && categoria.equalsIgnoreCase("INSUMO")) ? "INSUMO" : "SERVICIO";
+            modelo.setCategoria(categoria2);
+
             modelo.setProveedor(request.getParameter("txtproveedor"));
             modelo.guardar();
-            acceso="productos.jsp";
-        }else if(action.equalsIgnoreCase("Editar")){
+            acceso = "productos.jsp";
+        } else if (action.equalsIgnoreCase("Editar")) {
             productosmodelo modelo = new productosmodelo();
             modelo.setCodigo(request.getParameter("txtcodigo"));
             modelo.setNombre(request.getParameter("txtnombre"));
@@ -86,19 +90,24 @@ public class productoscontrolador extends HttpServlet {
             modelo.setStock(request.getParameter("txtstock"));
             modelo.setMinimo(request.getParameter("txtminimo"));
             modelo.setIva(request.getParameter("txtiva"));
+
+            String categoria = request.getParameter("categoria");
+            String categoria2 = (categoria != null && categoria.equalsIgnoreCase("INSUMO")) ? "INSUMO" : "SERVICIO";
+            modelo.setCategoria(categoria2);
+
             modelo.setProveedor(request.getParameter("txtproveedor"));
             modelo.modificar();
-            acceso="productos.jsp";
-        }else if(action.equalsIgnoreCase("delete")){
+            acceso = "productos.jsp";
+        } else if (action.equalsIgnoreCase("delete")) {
             productosmodelo modelo = new productosmodelo();
             modelo.eliminar(request.getParameter("id"));
-            acceso="productos.jsp";
-        }else if (action.equalsIgnoreCase("informe")) {
-            acceso ="reportes/rptproductos.jsp";
+            acceso = "productos.jsp";
+        } else if (action.equalsIgnoreCase("informe")) {
+            acceso = "reportes/rptproductos.jsp";
         }
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-        
+
     }
 
     /**

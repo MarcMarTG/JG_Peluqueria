@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class proveedormodelo {
 
-    private String codigo, nombre, ruc, telefono, correo, ciudad, mensaje;
+    private String codigo, nombre, ruc, telefono, correo, ciudad, mensaje, Ciudadnombre;
     Statement st;
     ResultSet rs;
 
@@ -70,9 +70,19 @@ public class proveedormodelo {
         this.mensaje = mensaje;
     }
 
+    public String getCiudadnombre() {
+        return Ciudadnombre;
+    }
+
+    public void setCiudadnombre(String Ciudadnombre) {
+        this.Ciudadnombre = Ciudadnombre;
+    }
+
     public List listar() {
         ArrayList<proveedormodelo> list = new ArrayList<>();
-        String sql = "select * from proveedores";
+        String sql = "SELECT proveedores.idproveedores, proveedores.prov_nombre, proveedores.prov_ruc, proveedores.prov_telefono, proveedores.prov_correo, ciudades.ciu_nombre\n"
+                + "FROM proveedores\n"
+                + "INNER JOIN ciudades ON proveedores.idciudades = ciudades.idciudades";
 
         try {
             st = utilidades.conexion.sta(st);
@@ -85,7 +95,7 @@ public class proveedormodelo {
                 modelo.setRuc(rs.getString("prov_ruc"));
                 modelo.setTelefono(rs.getString("prov_telefono"));
                 modelo.setCorreo(rs.getString("prov_correo"));
-                modelo.setCiudad(rs.getString("idciudades"));
+                modelo.setCiudad(rs.getString("ciu_nombre"));
                 list.add(modelo);
             }
 
@@ -114,7 +124,9 @@ public class proveedormodelo {
 
     public List listarporid(String id) {
         ArrayList<proveedormodelo> list = new ArrayList<>();
-        String sql = "select * from proveedores where idproveedores = '" + id + "'";
+        String sql = "SELECT proveedores.idproveedores, proveedores.prov_nombre, proveedores.prov_ruc, proveedores.prov_telefono, proveedores.prov_correo, proveedores.idciudades, ciudades.ciu_nombre\n"
+                + "FROM proveedores\n"
+                + "INNER JOIN ciudades ON proveedores.idciudades = ciudades.idciudades where idproveedores = " + id + "";
         try {
             st = utilidades.conexion.sta(st);
             rs = st.executeQuery(sql);
@@ -126,6 +138,7 @@ public class proveedormodelo {
                 modelo.setTelefono(rs.getString("prov_telefono"));
                 modelo.setCorreo(rs.getString("prov_correo"));
                 modelo.setCiudad(rs.getString("idciudades"));
+                modelo.setCiudadnombre(rs.getString("ciu_nombre"));
                 list.add(modelo);
             }
 
@@ -142,7 +155,7 @@ public class proveedormodelo {
                 + "prov_nombre='" + nombre + "',"
                 + "prov_ruc='" + ruc + "',"
                 + "prov_telefono='" + telefono + "',"
-                + "prov_correo='" + telefono + "',"
+                + "prov_correo='" + correo + "',"
                 + "idciudades='" + ciudad + "' where idproveedores='" + codigo + "'";
 
         try {
@@ -165,5 +178,24 @@ public class proveedormodelo {
         } catch (SQLException ex) {
             Logger.getLogger(proveedormodelo.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public String obtenerUltimoNumeroFacturaPago() {
+        String sql = "SELECT MAX(idproveedores) as ultimoNumero FROM proveedores";
+        String ultimoNumero = "0";
+        try {
+            st = utilidades.conexion.sta(st);
+            rs = st.executeQuery(sql);
+            if (rs.next()) {
+                ultimoNumero = rs.getString("ultimoNumero");
+                if (ultimoNumero == null) {
+                    ultimoNumero = "0";
+                }
+            }
+            st.close();
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(clientemodelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ultimoNumero;
     }
 }

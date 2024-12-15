@@ -47,7 +47,7 @@
                             <form action="../ciudadcontrolador" method="post">
                                 <div class="form-group">
                                     <label for="txtcodigo">CÓDIGO</label>
-                                    <input type="text" name="txtcodigo" id="txtcodigo" class="form-control" value="<%= m.getCodigo()%>">
+                                    <input type="text" readonly name="txtcodigo" id="txtcodigo" class="form-control" value="<%= m.getCodigo()%>">
                                 </div>
                                 <div class="form-group">
                                     <label for="txtnombre">NOMBRE</label>

@@ -93,7 +93,7 @@ public class clientecontrolador extends HttpServlet {
             modelo.eliminar(request.getParameter("id"));
             acceso = "clientes.jsp";
         } else if (action.equalsIgnoreCase("informe")) {
-            acceso = "reportes/rptcli.jsp";
+            acceso = "reportes/rptcliente.jsp";
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
