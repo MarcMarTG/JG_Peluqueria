@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cobros" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3d92f652-3289-46dc-80ae-1d816f5d0261">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cobros.`idcobros` AS cobros_idcobros,
+     cobros.`cob_fecha` AS cobros_cob_fecha,
+     cobros.`cob_estado` AS cobros_cob_estado,
+     cobros.`idclientes` AS cobros_idclientes,
+     cobros.`idaperturas` AS cobros_idaperturas
+FROM
+     `cobros` cobros]]>
+	</queryString>
+	<field name="cobros_idcobros" class="java.lang.Integer"/>
+	<field name="cobros_cob_fecha" class="java.sql.Date"/>
+	<field name="cobros_cob_estado" class="java.lang.String"/>
+	<field name="cobros_idclientes" class="java.lang.Integer"/>
+	<field name="cobros_idaperturas" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#191919" uuid="d48deee1-d0bc-4e65-9294-d052e9fea6eb"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="254" height="66" uuid="1ee98736-8409-4e53-bdd0-b2b0a98772ff"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[REPORTES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="254" y="66" width="97" height="29" uuid="20605d1e-8b29-4e64-b264-c0036de9a9b1"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[COBROS]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#373737" uuid="7a30336f-7820-440e-b38c-f9a8e6287231"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="e9657618-0264-4199-9cd1-64ca866fe341"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="456" y="0" width="99" height="132" uuid="f59c2d6f-3e93-4642-8b5c-9ec7c73d9e65"/>
+				<imageExpression><![CDATA[".\\logo3.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="111" height="18" uuid="831c389b-f4dd-4f97-bbc9-8e733a64dc4e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="111" y="0" width="111" height="18" uuid="e793fd4a-5bc5-4893-a47d-a91843a9d973"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="222" y="0" width="111" height="18" uuid="9e4eb564-fc8f-4fd7-9830-2ade95aa56f2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="333" y="0" width="111" height="18" uuid="58eb90aa-08c4-4856-b383-6f6e739afa49"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="444" y="0" width="109" height="18" uuid="d4553bef-2cbe-4b4b-8da9-c83c0c05b1aa"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="111" height="18" forecolor="#000000" uuid="44f6b8c6-a94f-4fc5-91c0-eadeaa06e0ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="0" width="111" height="18" forecolor="#000000" uuid="6931c633-c88a-44ae-aaf5-8b1e65d7fd68"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="0" width="111" height="18" forecolor="#000000" uuid="b03ef0eb-6828-4d1f-b5f0-9464f2af191d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="0" width="111" height="18" forecolor="#000000" uuid="c89f2c01-3cc2-491f-827b-94a0f8f2e8ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[APERTURAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="0" width="111" height="18" forecolor="#000000" uuid="bf623407-c761-40aa-8eb1-787a76291692"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="3cf09064-8efc-4388-b7d9-326443af056d"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="111" height="18" uuid="35abfa67-b03a-42bc-bfa2-4972d3b70c6e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cobros_idcobros}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="111" y="0" width="111" height="18" uuid="2280b726-d6f6-4f58-8a84-09dcf20d7ed3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cobros_cob_fecha}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="222" y="0" width="111" height="18" uuid="914afbac-a5b2-4225-bbb4-208653818365"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cobros_cob_estado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="333" y="0" width="111" height="18" uuid="1ce08fd4-1ce2-4c7c-84e7-ebef0c9ef33e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cobros_idclientes}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="444" y="0" width="111" height="18" uuid="19e502e1-68d8-4ab6-9f37-f05c744699f2"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cobros_idaperturas}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="8193290c-f517-4d48-a455-702416037a47"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#191919" uuid="88f4e0bb-52f4-49f1-b303-87ee1dfe2593"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="a9dbac11-61cd-4e44-a1af-e7a858e7b9d0"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="0675104c-5143-416a-8b6d-3b845e3200cf"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

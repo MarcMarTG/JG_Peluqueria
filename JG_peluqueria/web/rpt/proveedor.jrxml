@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proveedores" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="68d5acd6-b047-44a5-929b-b1dfc15bb75e">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     proveedores.`idproveedores` AS proveedores_idproveedores,
+     proveedores.`prov_nombre` AS proveedores_prov_nombre,
+     proveedores.`prov_ruc` AS proveedores_prov_ruc,
+     proveedores.`prov_telefono` AS proveedores_prov_telefono,
+     proveedores.`prov_correo` AS proveedores_prov_correo,
+     proveedores.`idciudades` AS proveedores_idciudades,
+     ciudades.`idciudades` AS ciudades_idciudades,
+     ciudades.`ciu_nombre` AS ciudades_ciu_nombre
+FROM
+     `ciudades` ciudades INNER JOIN `proveedores` proveedores ON ciudades.`idciudades` = proveedores.`idciudades`]]>
+	</queryString>
+	<field name="proveedores_idproveedores" class="java.lang.Integer"/>
+	<field name="proveedores_prov_nombre" class="java.lang.String"/>
+	<field name="proveedores_prov_ruc" class="java.lang.String"/>
+	<field name="proveedores_prov_telefono" class="java.lang.String"/>
+	<field name="proveedores_prov_correo" class="java.lang.String"/>
+	<field name="ciudades_ciu_nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#191919" uuid="462afd97-146e-4326-8097-6eb3dabeab3f"/>
+				<staticText>
+					<reportElement style="Title" x="43" y="0" width="254" height="66" uuid="c7732fdc-29da-4cfa-b137-9a290739700d"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[REPORTES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="255" y="66" width="164" height="29" uuid="14c19d7a-564c-487e-9440-0aadbca51c20"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PROVEEDORES]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="451" height="32" forecolor="#000000" backcolor="#373737" uuid="e90d7930-9afb-48e8-baf7-2763326f7cd8"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="30708402-3c5f-481a-9fba-66ab0db2c609"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="456" y="0" width="99" height="132" uuid="bddf0e40-8f9b-45be-8915-12a48e174491"/>
+				<imageExpression><![CDATA[".\\logo3.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="36" height="18" uuid="50ee5105-b524-475b-af1c-a24fbe4cb6ab"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="36" y="0" width="77" height="18" uuid="4dd659eb-db04-46d0-8bf4-1d80932c69da"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="113" y="0" width="74" height="18" uuid="2dba146d-6975-42ac-b39f-d21e157faedf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="187" y="0" width="110" height="18" uuid="02680ab4-8fe0-4342-9f16-312433275533"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="297" y="0" width="154" height="18" uuid="db70f497-41ea-497f-b2a2-2c2fd23d9955"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="451" y="0" width="104" height="18" uuid="1f0dee60-5e69-44f9-9f34-20b96384058c"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="36" height="18" forecolor="#000000" uuid="ebab816b-64a5-49c3-b282-fa79320e3105"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="36" y="0" width="77" height="18" forecolor="#000000" uuid="90edad85-02ea-4cbf-9272-7de659fe1934"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="113" y="0" width="74" height="18" forecolor="#000000" uuid="baa41ba2-eeb2-4b86-881e-9ddeaae092d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="187" y="0" width="110" height="18" forecolor="#000000" uuid="ebbe8834-e718-429c-bca3-485cbb3f106c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="297" y="0" width="154" height="18" forecolor="#000000" uuid="fe82360f-2e28-4aab-b033-fa35df728c18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CORREO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="451" y="0" width="104" height="18" forecolor="#000000" uuid="04ebd730-e210-49a2-bc93-4ca2b905bc2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIUDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="310ebc6f-9131-4ec8-9006-31c0df5ed2a5"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="36" height="18" uuid="80e06e43-4642-49e5-8a62-b00ef55eb94d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proveedores_idproveedores}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="36" y="0" width="77" height="18" uuid="e1b0bb37-dce0-431b-a994-5955e03407ab"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proveedores_prov_nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="113" y="0" width="74" height="18" uuid="6c7b4cc7-bdd3-472d-a351-1859291bc20c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proveedores_prov_ruc}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="297" y="0" width="154" height="18" uuid="5937dfa2-cd03-42e1-834f-4ed42c763687"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proveedores_prov_correo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="451" y="0" width="104" height="18" uuid="4dca7492-0c39-4faf-b176-f7984ed5a39b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ciudades_ciu_nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="187" y="0" width="110" height="18" uuid="d87e1bdb-7209-4581-84ff-e6a04634b54f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{proveedores_prov_telefono}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="8784f21f-7bd2-48ac-b6f6-f63d7f410aa9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#191919" uuid="bc28792a-83c5-4079-899b-8d634f02dcad"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="d6839b04-6a66-49f8-9568-30acefd925e1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="56ace9d5-16b3-482e-9a65-cc277a067ae4"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
