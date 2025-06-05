@@ -26,11 +26,11 @@ El sistema permite llevar un control eficiente de los distintos aspectos de la p
 - Tambien para poder ejecutar el programa correctamente, debe de estar configurado nuestro xampp.
 - Tanto apache como mysql deben estar encendidos.
 - Tomcat seria lo que se debe de configurar. Debemos entrar en el apartado config, luego tomacat-users.xml, y dentro de ese bloc de notas debemos escribir lo siguiente:
-
- ** <?xml version="1.0" encoding="UTF-8"?> **
+```
+  <?xml version="1.0" encoding="UTF-8"?> 
  <tomcat-users>
     <role rolename="manager-gui"/>
     <user password="1234" roles="manager-gui, manager-script,admin" username="admin"/>
  </tomcat-users>
-        
+```
 - Guardamos esa configuración y ahora debemos de configurar en netbeans. Debemos ingresar en el apartado de services, luego en servers, add server, seleccionamos apache Tomcat or Tomee, y debemos seleccionar la siguiente ubicación: C:\xampp\tomcat , luego debemos de poner el usuario y contraseña que configuramos en el xampp.
