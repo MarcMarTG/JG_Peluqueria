@@ -15,6 +15,6 @@ El sistema permite llevar un control eficiente de los distintos aspectos de la p
 
 ##  Integrantes del grupo
 
-- José Gómez – Backend y base de datos
-- Marcos Martinez – Frontend y diseño de interfaz
-- Dieter Pastoriza – Documentación y testing
+- Aracely Arrua 
+- Marcos Martinez 
+- Dieter Pastoriza 
