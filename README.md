@@ -27,7 +27,7 @@ El sistema permite llevar un control eficiente de los distintos aspectos de la p
 - Tanto apache como mysql deben estar encendidos.
 - Tomcat seria lo que se debe de configurar. Debemos entrar en el apartado config, luego tomacat-users.xml, y dentro de ese bloc de notas debemos escribir lo siguiente:
 
- ** <?xml version="1.0" encoding="UTF-8"?>
+ ** <?xml version="1.0" encoding="UTF-8"?> **
  <tomcat-users>
     <role rolename="manager-gui"/>
     <user password="1234" roles="manager-gui, manager-script,admin" username="admin"/>
