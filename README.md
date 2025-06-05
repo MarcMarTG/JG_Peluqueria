@@ -1,6 +1,6 @@
 #  Sistema de Gestión para Peluquería JG
 
-Este proyecto consiste en un Sistema para la peluquería *JG*, diseñado para facilitar la administración de servicios, clientes, turnos, productos y facturación. Está pensado para ayudar al personal a optimizar su tiempo, organizar el trabajo diario y ofrecer una mejor atención al cliente.
+Este proyecto consiste en un Sistema para la peluquería *JG*, diseñado para facilitar la administración de servicios, clientes, productos y facturación. Está pensado para ayudar al personal a optimizar su tiempo, organizar el trabajo diario y ofrecer una mejor atención al cliente.
 
 ##  Descripción General
 
